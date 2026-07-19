@@ -13,11 +13,14 @@ app.use((req, res, next) => {
   next();
 });
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.get('/health', (req, res) => res.status(200).json({ success: true, message: 'Backend is running' }));
 app.use('/', router);
 
+const PORT = process.env.PORT || 3000;
+
 if (require.main === module) {
-  app.listen(3000, () => {
-    console.log('Port 3000 is active');
+  app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Port ${PORT} is active`);
   });
 }
 
