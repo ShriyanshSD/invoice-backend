@@ -5,7 +5,7 @@ let fs = require('fs');
 let { Signup, Login, getProfile, updateProfile } = require('../Controller/auth');
 let { addCustomer, getCustomers, updateCustomer, deleteCustomer } = require('../Controller/customer_controller');
 let { createInvoice, getInvoices, getInvoiceById, updateInvoice, deleteInvoice, getDashboardSummary, getPaymentReports } = require('../Controller/invoice_controller');
-let { getStaff, addStaff } = require('../Controller/staff_controller');
+let { getStaff, addStaff, updateStaff, deleteStaff } = require('../Controller/staff_controller');
 let jwt = require('jsonwebtoken');
 let dotenv = require('dotenv');
 
@@ -69,5 +69,7 @@ router.delete('/api/invoices/:id', authMiddleware, deleteInvoice);
 router.get('/api/payment-reports', authMiddleware, getPaymentReports);
 router.get('/api/staff', authMiddleware, getStaff);
 router.post('/api/staff', authMiddleware, addStaff);
+router.put('/api/staff/:id', authMiddleware, updateStaff);
+router.delete('/api/staff/:id', authMiddleware, deleteStaff);
 
 module.exports = router;
